@@ -1,0 +1,6 @@
+0
+0
+0
+
+If i can do it like 0,0,0 then I can have Paul,0,0,0 and Bob,1,2,1 and Stacy 4,5,2 in one text file instead
+of creating a new file for each of them...
