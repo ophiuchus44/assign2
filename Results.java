@@ -12,6 +12,12 @@ public class Results{
 
 	private String password;
 
+	private String results;
+
+	//private String rounds ="";
+	//private String wins ="";
+	//private String losses ="";
+
 public Results(String fileLocation2){
 	fileLocation = fileLocation2;
 
@@ -50,16 +56,53 @@ public Results(String fileLocation2){
 
 public void won(){
 	wins++;
+	rounds++;
 	System.out.println("Wins: " + wins);
 	}
 
 public void lost(){
 	losses++;
+	rounds++;
 	System.out.println("Losses: " + losses);
 
 	}
 
 public void save(){
+
+//		String rounds = Integer.toString(rounds);
+//		String wins = Integer.toString(wins);
+//		String losses = Integer.toString(losses);
+
+
+		try{
+
+		System.out.println("SAVE LOCATION: " + fileLocation);
+
+		FileWriter wr = new FileWriter(fileLocation);
+		
+//System.out.println(rounds);
+//System.out.println(wins);
+//System.out.println(losses);
+
+		//String rounds = Integer.toString(rounds);
+		//String wins = Integer.toString(wins);
+		//String losses = Integer.toString(losses);
+
+		wr.write(results);
+
+//		wr.write(rounds);
+//		wr.write("\n");
+//		wr.write(wins);
+//		wr.write("\n");
+//		wr.write(losses);	
+		wr.close();
+		}
+		catch (Exception ex) {
+            ex.printStackTrace();
+
+		}
+
+		
 	// take file location and create a file object
 	//File userFile = new File(fileLocation)
 
@@ -68,21 +111,36 @@ public void save(){
 	// write to results
 }
 
+// need to trun this into a string method
+public String toString(){
 
-public void to2String(){
-	rounds = losses + wins;
+	StringBuilder sb = new StringBuilder();
 
-	System.out.println("Rounds: " + rounds);
-	System.out.println("Wins: " + wins);
-	System.out.println("Losses: " + losses);
+	sb.append(rounds + "\n" + wins + "\n" + losses + "\n" + password);
+
+//	if(password!=null){
+//		sb.append(rounds + "\n" + wins + "\n" + losses + "\n" + password);		
+//	}
+//	else{
+//		sb.append(rounds + "\n" + wins + "\n" + losses);	
+//	}
+
+	//System.out.println("Rounds: " + rounds);
+	//System.out.println("Wins: " + wins);
+	//System.out.println("Losses: " + losses);
+
+	results = sb.toString();
+
+	return results;
 }
 
+
+// saves password of new users
 public void savePassword(String newPassword){
 	password = newPassword;
-	System.out.println("Would be saved now");
+	System.out.println("Stored Locally and will be saved when toString called");
 
-
-}
+	}
 
 
 }

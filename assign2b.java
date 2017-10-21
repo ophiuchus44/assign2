@@ -38,8 +38,12 @@ public static void main (String [] args){
     // if the users file exists, load there file into results
 
     if (f.exists()){
+
+    	//System.out.println(f + " file found!");
     	// ask for password
     	// read from file
+    	fileInput = fileoutput;
+
     	try{
     		Scanner scan = new Scanner(f);
     	// skip first 3 rows and load password
@@ -48,6 +52,7 @@ public static void main (String [] args){
     	scan.nextLine();
     	password = scan.nextLine();
     	//	System.out.println(password);
+
     	}
     	
 
@@ -61,14 +66,19 @@ public static void main (String [] args){
     	String userPassword = inScan.nextLine();
 
     	if(!userPassword.equals(password)){
+			System.out.println("Invalid Password. Please enter your password: ");
 			userPassword = inScan.nextLine();
+
 			if(!userPassword.equals(password)){
 				System.out.println("Sorry, you will be signed in as a guest");
-				fileInput = fileInput;
+				fileInput =  "Guest_results.txt";  
 			}
+			//fileInput = "Guest_results.txt";
 
     	}
     	else{
+    		newPassword = password;
+    		savePassword = true;
     		fileInput = fileoutput;	
     	}
 
@@ -125,7 +135,29 @@ public static void main (String [] args){
 		// if they don't want to start a new account	
 		else{
 				System.out.println("Ok, welcome guest!!!");
-				fileInput = fileInput;
+
+				String fileCopy =  "Guest_results.txt";
+
+				try {
+        		    FileReader fr=new FileReader(fileInput);
+		            FileWriter fw=new FileWriter(fileCopy);
+
+            		int c;
+            		
+            		while((c=fr.read())!=-1) {
+                		fw.write(c);
+            			}
+
+            		fr.close();
+            		fw.close();
+
+        			} 
+
+        			catch(IOException e) {
+            			System.out.println(e);
+        			} 
+
+				fileInput =  fileCopy;
 
 			}
 
@@ -140,11 +172,49 @@ public static void main (String [] args){
 
     // this can only save the password the new users file once it has been created and the results class
     // is initiallized, i wrote this quick method for saving new users passwords and maybe updating current
-    // users passwords if they want
+    // users passwords if they 
+
+    // had to make it so it saved the password everytime, even if their password is valid, it still gets saved again
+    // because i was doing this without that and it kept deleteing the userspassword after the 2nd time logging in and exiting
     if(savePassword){
     	results.savePassword(newPassword);
     }
 
+   /* String fileoutput = userName + "_results.txt";
+
+    // if fileexist, continue to results class
+    //else ask if user wants to create account
+    // then ask for password 
+    // first create this file
+    // and we'll save the password somehow... 
+
+        try {
+            FileReader fr=new FileReader(fileInput);
+            FileWriter fw=new FileWriter(fileoutput);
+
+            int c;
+            while((c=fr.read())!=-1) {
+                fw.write(c);
+            } 
+            fr.close();
+            fw.close();
+
+        } 
+        catch(IOException e) {
+            System.out.println(e);
+        } 
+
+		*/
+
+
+
+
+
+	// results file will concate with userName
+	//String fileResults = "results.txt";
+
+
+	//boolean gameOver = false;
 	boolean nextWord = true;
 	//int guessCount = 3;
 
@@ -245,8 +315,20 @@ public static void main (String [] args){
 
 		}
 
-		results.to2String();
-		//results.save();
+		System.out.println("Results:  \n" + results.toString());
+		results.save();
+
+
+
+		String guestFile = "Guest_results.txt";
+
+		// delete guest file everytime
+		File f1 = new File(guestFile);
+		
+		if(f1.exists()){
+			f1.delete();
+			System.out.println("Guess results deleted");
+		}
 
 }
 
