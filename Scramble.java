@@ -86,6 +86,7 @@ public class Scramble{
 			StringBuilder intString = new StringBuilder();
 
 
+		// create a stringbuilder of randoms ints 0-length of word
 		while(intString.length()<len){
 			for (int i = 0; i<len; i++){
 				// given the length of the intString which is based on the 
@@ -107,8 +108,12 @@ public class Scramble{
 
 	for (int a = 0; a<len; a++){
 
+			// temp index number of the intString is converted to int
+			// while creating the new word, it finds the index number
 			int temp = Character.getNumericValue(intString.charAt(a));
 			
+			// the new string is built by looping through and grab characters at
+			// at the temp int index number
 			newString.append(sb.charAt(temp));
 		}
 
