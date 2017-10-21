@@ -33,7 +33,7 @@ public class Guess{
 
 	public String userGuess(String userGuess) {		
 
-			if (userGuess.toLowerCase().equals(word.toLowerCase())){
+			if (userGuess.toUpperCase().equals(word.toUpperCase())){
 				return userGuess;
 			}
 
@@ -41,11 +41,11 @@ public class Guess{
 
 			else{
 
-				StringBuilder sbGuess = new StringBuilder(userGuess.toLowerCase());
+				StringBuilder sbGuess = new StringBuilder(userGuess.toUpperCase());
 				// newString will display the guess vs correctword
 				StringBuilder newString = new StringBuilder();
 
-				StringBuilder sbWord = new StringBuilder(word.toLowerCase());
+				StringBuilder sbWord = new StringBuilder(word.toUpperCase());
 
 
 
