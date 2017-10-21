@@ -10,14 +10,37 @@ public class Results{
 
 	private String fileLocation;
 
-
-	
+	private String password;
 
 public Results(String fileLocation2){
 	fileLocation = fileLocation2;
-	wins = 0;
-	losses = 0;
-	rounds = 0;
+
+	
+	try{
+
+	
+	File userFile = new File(fileLocation);
+
+	Scanner scan = new Scanner(userFile);
+
+	rounds = scan.nextInt();
+
+	wins = scan.nextInt();
+	losses = scan.nextInt();
+
+	}
+	catch (Exception ex) {
+            ex.printStackTrace();
+
+	}
+
+
+
+	// should read in info from file location and set these values
+	// inteads of starting at 0
+	//wins = 0;
+	//losses = 0;
+	//rounds = 0;
 }
 
 //public Results(String fileInput){
@@ -37,10 +60,14 @@ public void lost(){
 	}
 
 public void save(){
+	// take file location and create a file object
+	//File userFile = new File(fileLocation)
 
+	//Scanner scan = new Scanner(userFile)
 
 	// write to results
 }
+
 
 public void to2String(){
 	rounds = losses + wins;
@@ -48,6 +75,13 @@ public void to2String(){
 	System.out.println("Rounds: " + rounds);
 	System.out.println("Wins: " + wins);
 	System.out.println("Losses: " + losses);
+}
+
+public void savePassword(String newPassword){
+	password = newPassword;
+	System.out.println("Would be saved now");
+
+
 }
 
 
