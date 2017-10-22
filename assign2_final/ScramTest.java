@@ -10,7 +10,7 @@ public class ScramTest
     public static void main(String[] args) throws IOException
     {
     	System.out.println("Testing normal use...\n");
-        Scramble theScramble = new Scramble("swamp.txt"); 
+        Scramble theScramble = new Scramble("words.txt"); 
         // Create Scramble object using the file name as an argument.  Note
 		// that this constructor does not actually read in any words.
         // Sentinel controlled loop.  Keep getting words and showing them until returned
@@ -25,7 +25,7 @@ public class ScramTest
         }
         
         System.out.println("\nTesting special cases...\n");
-        theScramble = new Scramble("swamp.txt");
+        theScramble = new Scramble("words.txt");
         System.out.println("Initial call to getScrambledWord(): ");
         word = theScramble.getScrambledWord();
         if (word == null)
